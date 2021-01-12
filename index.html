@@ -21,8 +21,25 @@
         </div>
     </nav>
 
-    <input type="button" id="add" value="Add">
-    <div id="inputs"></div>
+
+    <div class="row">
+        <div class="col">
+            <h2>Original Portions</h2>
+            <input type="number">
+        </div>
+        <div class="col">
+            <h2>New Portions</h2>
+            <input type="number">
+            <button>Results!</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Add Ingredients</h2>
+            <input type="button" id="add" value="Add">
+            <div id="inputs"></div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <script>
@@ -34,10 +51,21 @@
         {
             // *** Div to contain them
             var div = document.createElement("div");
+
+            var newLabel  = document.createElement('label');
+            newLabel.innerHTML = "Ingredient Name";
             
             var newTextField = document.createElement('input');
             newTextField.type = 'text';
             newTextField.name = 'textInput';
+
+            var xSpan = document.createElement('span')
+            xSpan.innerHTML = "X";
+
+            var newNumberField = document.createElement('input')
+            newNumberField.type = 'number';
+            newNumberField.class = "oldQty"
+            newNumberField.name = 'numberInput';
 
             var newDeleteButton = document.createElement('input');
             newDeleteButton.type = 'button';
@@ -46,7 +74,10 @@
             newDeleteButton.addEventListener("click", deleteHandler);
             
             // *** Put them in the div
+            div.appendChild(newLabel);
             div.appendChild(newTextField);
+            div.appendChild(xSpan);
+            div.appendChild(newNumberField);
             div.appendChild(newDeleteButton);
 
             // *** Add the div
@@ -57,6 +88,11 @@
             parent.parentElement.removeChild(parent);
         }
         ///////////////////////////////////////////////////////////////////////////////////////
+
+
+        function handleInput() {
+            
+        }
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
