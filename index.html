@@ -8,6 +8,72 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <style>
+        body {
+            background-color: #E0FBFC;
+            color: #253237;
+            font-family: serif;
+            font-weight: bolder;
+        }
+        h1 {
+            font-size: 5em;
+            margin: .5em;
+        }
+        a {
+            color: #253237;
+        }
+        a:hover {
+            color: #253237;
+        }
+        .new-recipe p {
+        background-color: #253237;
+        border-radius: .5em;
+        padding: .5em;
+        text-align: center;
+        }
+        .new-recipe p:empty {
+            padding: 0;
+        }
+        .new-recipe {
+            margin: 1em;
+            padding: 1em;
+            color: #E0FBFC;
+            font-size: 1.5em;
+        }
+        .portions {
+            margin: 1em;
+        }
+        .portions input {
+            background-color: #253237;
+            color: #E0FBFC;
+            font-size: 2em;
+            border: 0;
+            border-radius: .5em;
+            padding: .25em;
+        }
+        .portions input:hover {
+            background-color: yellow;
+            color: #253237;
+        }
+        .list {
+            margin: 1em;
+        }
+        .list input {
+            font-size: 1.25em;
+            margin: 2px;
+            background-color: #253237;
+            color: #E0FBFC;
+            border: 0;
+            border-radius: .5em;
+            padding: .25em;
+        }
+        .list input:hover {
+            background-color: yellow;
+            color: #253237;
+        }
+
+    </style>
+
     <title>Stoichiometry</title>
   </head>
   <body>
@@ -22,7 +88,7 @@
     </nav>
 
 
-    <div class="row">
+    <div class="row portions">
         <div class="col">
             <h2>Original Portions</h2>
             <input id="o-portion" type="number">
@@ -30,19 +96,19 @@
         <div class="col">
             <h2>New Portions</h2>
             <input id="n-portion" type="number">
-            <button onclick="output()">Results!</button>
+            <input type="button" id="results" value="Results">
         </div>
     </div>
-    <div class="row">
+    <div class="row list">
         <div class="col">
             <h2>Add Ingredients</h2>
             <input type="button" id="add" value="Add">
             <div id="inputs"></div>
         </div>
-        <div class="col-3">
+        <div class="col-3 new-recipe">
             <p id="ingredient-text"></p>
         </div>
-        <div class="col-3">
+        <div class="col-3 new-recipe">
             <p id="newQty"></p>
         </div>
     </div>
@@ -100,7 +166,7 @@
         }
         ///////////////////////////////////////////////////////////////////////////////////////
 
-        
+        document.getElementById("results").addEventListener("click", output, false);
         function output() {
             var numArray = $('.oldQty').map(function() {
                 return this.value;
