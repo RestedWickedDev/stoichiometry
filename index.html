@@ -21,37 +21,42 @@
         </div>
     </nav>
 
-    <button onclick="add_field()">ADD FIELD</button>
-    <button onclick="remove_field()">REMOVE FIELD</button>
-
-    <form id="form">
-        <input type="text" name="text_field[]">
-    </form>
+    <input type="button" id="add" value="Add">
+    <div id="inputs"></div>
 
     <!-- Optional JavaScript -->
     <script>
-        function add_field(){
-
-            var x = document.getElementById("form");
-            // create an input field to insert
-            var new_field = document.createElement("input");
-            // set input field data type to text
-            new_field.setAttribute("type", "text");
-            // set input field name 
-            new_field.setAttribute("name", "text_field[]");
-            // select last position to insert element before it
-            var pos = x.childElementCount;
-
-            // insert element
-            x.insertBefore(new_field, x.childNodes[pos]);
-        }
         
-        function remove_field(){
-
-            var x = document.getElementById("form")
+        // got this code from https://stackoverflow.com/a/52171598
+        ///////////////////////////////////////////////////////////////////////////////////////
+        document.getElementById("add").addEventListener("click", addNewField, false);
+        function addNewField()
+        {
+            // *** Div to contain them
+            var div = document.createElement("div");
             
-    
+            var newTextField = document.createElement('input');
+            newTextField.type = 'text';
+            newTextField.name = 'textInput';
+
+            var newDeleteButton = document.createElement('input');
+            newDeleteButton.type = 'button';
+            newDeleteButton.value = "Delete";
+            newDeleteButton.name = 'deleteTextInput';
+            newDeleteButton.addEventListener("click", deleteHandler);
+            
+            // *** Put them in the div
+            div.appendChild(newTextField);
+            div.appendChild(newDeleteButton);
+
+            // *** Add the div
+            document.getElementById('inputs').appendChild(div);
         }
+        function deleteHandler() {
+            var parent = this.parentElement;
+            parent.parentElement.removeChild(parent);
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
