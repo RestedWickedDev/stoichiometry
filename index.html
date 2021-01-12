@@ -25,12 +25,12 @@
     <div class="row">
         <div class="col">
             <h2>Original Portions</h2>
-            <input type="number">
+            <input id="o-portion" type="number">
         </div>
         <div class="col">
             <h2>New Portions</h2>
-            <input type="number">
-            <button onclick="numArray()">Results!</button>
+            <input id="n-portion" type="number">
+            <button onclick="output()">Results!</button>
         </div>
     </div>
     <div class="row">
@@ -39,17 +39,21 @@
             <input type="button" id="add" value="Add">
             <div id="inputs"></div>
         </div>
-        <div class="col">
-            <div id="output">
+        <div class="col-3">
+            <p id="ingredient-text"></p>
+        </div>
+        <div class="col-3">
             <p id="newQty"></p>
-
-            </div>
         </div>
     </div>
 
     <!-- Optional JavaScript -->
     <script>
         
+        const oPortions = document.querySelector('#o-portion')
+        const nPortions = document.querySelector('#n-portion')
+
+
         // got this code from https://stackoverflow.com/a/52171598
         ///////////////////////////////////////////////////////////////////////////////////////
         document.getElementById("add").addEventListener("click", addNewField, false);
@@ -97,13 +101,36 @@
         ///////////////////////////////////////////////////////////////////////////////////////
 
         
-        function numArray() {
-            var valueArray = $('.oldQty').map(function() {
+        function output() {
+            var numArray = $('.oldQty').map(function() {
+                return this.value;
+            }).get();
+
+            var textArray = $('.ingredientName').map(function() {
                 return this.value;
             }).get();
             
-            var oneServing = valueArray.map
-            console.log(valueArray)
+            var oneServing = numArray.map(x => x / oPortions.value);
+            var moreServing = oneServing.map(x => x * nPortions.value)
+            console.log(numArray)
+            console.log(oneServing)
+            console.log(textArray)
+            console.log(moreServing)
+
+
+            var y;
+            var num = "";
+            for (y = 0; y < numArray.length; i++) {
+                num += moreServing[y] + "<br>";
+            }
+            document.getElementById("newQty").innerHTML = num;
+
+            var text = "";
+            var i;
+            for (i = 0; i < numArray.length; i++) {
+            text += textArray[i] + "<br>";
+            }
+            document.getElementById("ingredient-text").innerHTML = text;
         }
 
     </script>
