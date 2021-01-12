@@ -30,7 +30,7 @@
         <div class="col">
             <h2>New Portions</h2>
             <input type="number">
-            <button>Results!</button>
+            <button onclick="numArray()">Results!</button>
         </div>
     </div>
     <div class="row">
@@ -38,6 +38,12 @@
             <h2>Add Ingredients</h2>
             <input type="button" id="add" value="Add">
             <div id="inputs"></div>
+        </div>
+        <div class="col">
+            <div id="output">
+            <p id="newQty"></p>
+
+            </div>
         </div>
     </div>
 
@@ -57,6 +63,7 @@
             
             var newTextField = document.createElement('input');
             newTextField.type = 'text';
+            newTextField.setAttribute("class", "ingredientName");
             newTextField.name = 'textInput';
 
             var xSpan = document.createElement('span')
@@ -64,7 +71,7 @@
 
             var newNumberField = document.createElement('input')
             newNumberField.type = 'number';
-            newNumberField.class = "oldQty"
+            newNumberField.setAttribute("class", "oldQty");
             newNumberField.name = 'numberInput';
 
             var newDeleteButton = document.createElement('input');
@@ -89,10 +96,16 @@
         }
         ///////////////////////////////////////////////////////////////////////////////////////
 
-
-        function handleInput() {
+        
+        function numArray() {
+            var valueArray = $('.oldQty').map(function() {
+                return this.value;
+            }).get();
             
+            var oneServing = valueArray.map
+            console.log(valueArray)
         }
+
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
