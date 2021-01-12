@@ -7,3 +7,6 @@ Cooking isn't it's only use.
 Need to compile a parts list?
 You can do it!
 
+
+Just add as many ingredients as you need to add, and you can quickly and safely 
+calculate how many portions you want to make.
